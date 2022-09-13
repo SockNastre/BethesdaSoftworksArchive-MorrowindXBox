@@ -7,8 +7,7 @@
     {
         public string EntryStr { get; set; }
         public string RealPath { get; set; }
-
-        public ulong Hash { get; set; }
+        public ulong Hash { get; set; } // Used during unpacking
 
         public ulong GenerateHash => MorrowindBSAHash.GetPC(this.EntryStr);
         public uint GenerateHashLow => this.EntryStr.Equals("textures\\gambtns.dds") ? 119369821 : MorrowindBSAHash.GetPCLow(this.EntryStr);
