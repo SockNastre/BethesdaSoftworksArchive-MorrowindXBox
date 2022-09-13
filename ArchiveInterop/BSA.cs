@@ -94,7 +94,6 @@ namespace ArchiveInterop
                 writer.BaseStream.Position = 0x0C;
                 foreach (Asset asset in assetList)
                 {
-                    //Console.WriteLine(asset.EntryStr);
                     writer.Write(asset.Size);
                     writer.Write(asset.Offset - dataOffset - 12);
 
