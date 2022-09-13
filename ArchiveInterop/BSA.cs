@@ -159,7 +159,6 @@ namespace ArchiveInterop
                     {
                         Size = reader.ReadUInt32(),
                         Offset = reader.ReadUInt32() + dataOffset,
-                        Index = fileIndex
                     };
 
                     assetList.Add(asset);

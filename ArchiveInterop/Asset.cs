@@ -8,7 +8,6 @@
         public string EntryStr { get; set; }
         public string RealPath { get; set; }
 
-        public uint Index { get; set; }
         public ulong Hash { get; set; }
 
         public ulong GenerateHash => MorrowindBSAHash.GetPC(this.EntryStr);
