@@ -80,6 +80,7 @@ namespace ArchiveInterop
                     writer.Write(assetData);
                     Console.Write($"\r{++count} / {assetList.Count()}");
                 }
+                Console.Write('\r' + new string(' ', Console.WindowWidth - 1));
                 count = 0;
 
                 // Going back to hash table offset in header, writing new one
@@ -99,6 +100,7 @@ namespace ArchiveInterop
 
                     Console.Write($"\r{++count} / {assetList.Count()}");
                 }
+                Console.Write('\r' + new string(' ', Console.WindowWidth - 1));
                 count = 0;
 
                 // Writing asset hash table
@@ -163,6 +165,7 @@ namespace ArchiveInterop
                     assetList.Add(asset);
                     Console.Write($"\r{++count} / {assetList.Count()}");
                 }
+                Console.Write('\r' + new string(' ', Console.WindowWidth - 1));
                 count = 0;
 
                 // Reading hash table if a path was given
@@ -179,6 +182,7 @@ namespace ArchiveInterop
                             hashDict.Add(htReader.ReadUInt64(), htReader.ReadNullTerminatedString());
                             Console.Write($"\r{++count} / {assetList.Count()}");
                         }
+                        Console.Write('\r' + new string(' ', Console.WindowWidth - 1));
                         count = 0;
                     }
                 }
@@ -199,6 +203,7 @@ namespace ArchiveInterop
 
                     Console.Write($"\r{++count} / {assetList.Count()}");
                 }
+                                Console.Write('\r' + new string(' ', Console.WindowWidth - 1));
                 count = 0;
 
                 // Going to asset offsets and unpacking
