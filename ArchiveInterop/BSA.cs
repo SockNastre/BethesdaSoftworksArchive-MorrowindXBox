@@ -13,7 +13,7 @@ namespace ArchiveInterop
         /// </summary>
         /// <param name="path">Real filesystem path to write BSA to.</param>
         /// <param name="assetList">List of <see cref="Asset"/> to write in BSA.</param>
-        public static void Write(string path, List<Asset> assetList)
+        public static void Write(string path, List<Asset> assetList, bool isStringTableWritten = false)
         {
             // Used for counting progress for console printing
             uint count = 0;
@@ -30,6 +30,27 @@ namespace ArchiveInterop
                     // Temporary, asset size + offset
                     writer.Write(-1);
                     writer.Write(-1);
+                }
+
+                // Whether to write the string table or not
+                if (isStringTableWritten)
+                {
+                    // Sorting asset list by the low part of the hash, then by high part (required)
+                    assetList = assetList.OrderBy(o => o.GenerateHashLow).ThenBy(o => o.GenerateHashHigh).ToList();
+
+                    // Writing name table offsets (rather than write offsets we'll just keep incrementing a size and writing that)
+                    uint currentNameTableSize = 0;
+                    foreach (Asset asset in assetList)
+                    {
+                        writer.Write(currentNameTableSize);
+                        currentNameTableSize += (uint)asset.EntryStr.Length + 1;
+                    }
+
+                    // Writing asset names in name table
+                    foreach (Asset asset in assetList)
+                    {
+                        writer.WriteNullTerminatedString(asset.EntryStr);
+                    }
                 }
 
                 // Will use this later to write back to header
@@ -81,6 +102,7 @@ namespace ArchiveInterop
                 count = 0;
 
                 // Writing asset hash table
+                writer.BaseStream.Position = hashTableOffset + 12;
                 foreach (Asset asset in assetList)
                 {
                     // This asset entry string name is special, and uses a different hash

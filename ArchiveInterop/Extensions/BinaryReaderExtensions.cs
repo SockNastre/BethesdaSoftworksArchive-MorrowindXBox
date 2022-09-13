@@ -12,6 +12,9 @@ namespace ArchiveInterop.Extensions
         /// Reads null-terminated string using a <see cref="BinaryReader"/>.
         /// </summary>
         /// <param name="reader">The <see cref="BinaryReader"/> to read with.</param>
+        /// <remarks>
+        /// See <see cref="BinaryWriterExtensions.WriteNullTerminatedString(BinaryReader)"/> for how to write null-terminated string with <see cref="BinaryWriter"/>
+        /// </remarks>
         /// <returns>Null-terminated string as <see cref="string"/> object.</returns>
         public static string ReadNullTerminatedString(this BinaryReader reader)
         {

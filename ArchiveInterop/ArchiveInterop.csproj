@@ -44,6 +44,7 @@
     <Compile Include="Asset.cs" />
     <Compile Include="BSA.cs" />
     <Compile Include="Extensions\BinaryReaderExtensions.cs" />
+    <Compile Include="Extensions\BinaryWriterExtensions.cs" />
     <Compile Include="MorrowindBSAHash.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
