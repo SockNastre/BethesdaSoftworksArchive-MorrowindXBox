@@ -7,6 +7,7 @@ Requires .NET Framework 4.8
  - (Potentially) allows for mod assets to be packed into working BSA for Morrowind XBox.
  - CLI tool allows for dragging folder onto executable and getting archives packed straight away.
  - CLI tool allows for dragging BSA onto executable and getting BSA unpacked.
+ - Supports name table or non-name table BSA.
 
 ### F.A.Q
 
@@ -25,9 +26,11 @@ A: Yes. This seems to be the only way to load additional content via a BSA for M
 Q: _Should I pack BSAs for PC with this?_  
 A: No. For PC use another tool like [bsapack](https://github.com/xyzz/bsapack).  
 
+Q: _Why is BSA Browser able to read the BSA's file names that I just packed? Shouldn't there be no name table?_  
+A: If dragging a folder onto the executable to pack, by default, a name table will be generated in the BSA. XBox Morrowind should still load this fine, this was done to prevent potential data loss (not knowing what file is what) when opening a packed BSA. If this is not desired, simply packing from the executable without the '-strtable' command will do the trick (please look at executable help menu).  
+
 Q: _I am trying to build/debug this program, why am I not getting file names when unpacking a BSA?_  
 A: Check out the [DOCUMENTATION](https://github.com/SockNastre/BethesdaSoftworksArchive-MorrowindXBox/tree/main/__DOCUMENTATION__) folder for a hash table file to use. Put this file in the same folder as executable.  
 
 ### Credits
  - Thanks to [asorrycanadian](https://github.com/asorrycanadian) for helping out where needed, testing, and back-and-forth dialog.
- - Josip Medved for the OpenFolderDialog.
