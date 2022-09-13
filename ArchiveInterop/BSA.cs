@@ -150,6 +150,7 @@ namespace ArchiveInterop
                 uint fileCount = reader.ReadUInt32();
                 uint dataOffset = hashTableOffset + fileCount * 8;
                 var assetList = new List<Asset>();
+                bool isNameTable = false;
 
                 // Reading asset record data
                 for (uint fileIndex = 0; fileIndex < fileCount; fileIndex++)
@@ -186,23 +187,53 @@ namespace ArchiveInterop
                     }
                 }
 
+                // Checking for name table
+                if (reader.ReadInt32() == 0)
+                {
+                    isNameTable = true;
+                }
+                reader.BaseStream.Position -= 4;
+
+                // Handling name table if it is there
+                if (isNameTable)
+                {
+                    // Getting name offsets
+                    var nameOffsetArray = new uint[assetList.Count];
+                    for (uint nameOffsetIndex = 0; nameOffsetIndex < assetList.Count; nameOffsetIndex++)
+                    {
+                        nameOffsetArray[nameOffsetIndex] = reader.ReadUInt32();
+                    }
+
+                    // Getting name strings
+                    long nameTableOffset = reader.BaseStream.Position;
+                    for (uint nameOffsetIndex = 0; nameOffsetIndex < assetList.Count; nameOffsetIndex++)
+                    {
+                        reader.BaseStream.Position = nameTableOffset + nameOffsetArray[nameOffsetIndex];
+                        assetList[(int)nameOffsetIndex].EntryStr = reader.ReadNullTerminatedString();
+                    }
+                }
+
                 // Getting asset hashes to find their entry strings, if no match is found hash is used as name
+                reader.BaseStream.Position = hashTableOffset;
                 foreach (Asset asset in assetList)
                 {
                     asset.Hash = reader.ReadUInt64();
 
-                    if (hashDict.ContainsKey(asset.Hash))
+                    if (string.IsNullOrEmpty(asset.EntryStr))
                     {
-                        asset.EntryStr = hashDict[asset.Hash];
-                    }
-                    else
-                    {
-                        asset.EntryStr = asset.Hash.ToString("X2");
+                        if (hashDict.ContainsKey(asset.Hash))
+                        {
+                            asset.EntryStr = hashDict[asset.Hash];
+                        }
+                        else
+                        {
+                            asset.EntryStr = asset.Hash.ToString("X2");
+                        }
                     }
 
                     Console.Write($"\r{++count} / {assetList.Count()}");
                 }
-                                Console.Write('\r' + new string(' ', Console.WindowWidth - 1));
+                Console.Write('\r' + new string(' ', Console.WindowWidth - 1));
                 count = 0;
 
                 // Going to asset offsets and unpacking
