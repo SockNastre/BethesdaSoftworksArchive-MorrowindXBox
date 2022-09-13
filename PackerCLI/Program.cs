@@ -205,7 +205,7 @@ namespace PackerCLI
                 Console.WriteLine("Invalid usage\n");
             }
 
-            Console.WriteLine("BethesdaSoftworksArchive MorrowindXBox Packer Cli\nCopyright (c) 2022  SockNastre\nVersion: 1.0.0.0\n\n" + new string('-', 50) +
+            Console.WriteLine("BethesdaSoftworksArchive MorrowindXBox Packer Cli\nCopyright (c) 2022  SockNastre\nVersion: 1.0.1.0\n\n" + new string('-', 50) +
                 "\n\nUsage: \"BSA MorrowindXBox Packer Cli.exe\" <Command> <Options>\n\nCommands:\n-pack (-p)\n-unpack (-u)\n-help (-h)\n\n" +
                 "Pack Options:\n-indir (-i)\n-out (-o)\n-strtable\n\n" +
                 "Unpack Options:\n-inbsa (-i)\n-outdir (-o)\n-hashtable\n\n" +
