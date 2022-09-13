@@ -10,8 +10,8 @@
         public ulong Hash { get; set; } // Used during unpacking
 
         public ulong GenerateHash => MorrowindBSAHash.GetPC(this.EntryStr);
-        public uint GenerateHashLow => this.EntryStr.Equals("textures\\gambtns.dds") ? 119369821 : MorrowindBSAHash.GetPCLow(this.EntryStr);
-        public uint GenerateHashHigh => this.EntryStr.Equals("textures\\gambtns.dds") ? 3440605484 : MorrowindBSAHash.GetPCHigh(this.EntryStr);
+        public uint GenerateHashLow => MorrowindBSAHash.GetPCLow(this.EntryStr);
+        public uint GenerateHashHigh => MorrowindBSAHash.GetPCHigh(this.EntryStr);
 
         // These fields get set during packing
         public uint Size { get; set; }

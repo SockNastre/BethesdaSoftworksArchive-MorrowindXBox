@@ -106,16 +106,7 @@ namespace ArchiveInterop
                 writer.BaseStream.Position = hashTableOffset + 12;
                 foreach (Asset asset in assetList)
                 {
-                    // This asset entry string name is special, and uses a different hash
-                    if (asset.EntryStr.Equals("textures\\gambtns.dds"))
-                    {
-                        writer.Write(14777288032337621085);
-                    }
-                    else
-                    {
-                        writer.Write(MorrowindBSAHash.GetPC(asset.EntryStr));
-                    }
-
+                    writer.Write(MorrowindBSAHash.GetPC(asset.EntryStr));
                     Console.Write($"\r{++count} / {assetList.Count()}");
                 }
                 count = 0;
