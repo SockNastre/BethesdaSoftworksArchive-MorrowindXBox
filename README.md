@@ -24,7 +24,7 @@ Q: _Can this repack the game's main BSA?_
 A: Yes. This seems to be the only way to load additional content via a BSA for Morrowind XBox.  
 
 Q: _Should I pack BSAs for PC with this?_  
-A: No. For PC use another tool like [bsapack](https://github.com/xyzz/bsapack).  
+A: Yes although I reccommend for PC to use another tool like [bsapack](https://github.com/xyzz/bsapack). This tool can pack for PC Morrowind perfectly fine.  
 
 Q: _Why is BSA Browser able to read the BSA's file names that I just packed? Shouldn't there be no name table?_  
 A: If dragging a folder onto the executable to pack, by default, a name table will be generated in the BSA. XBox Morrowind should still load this fine, this was done to prevent potential data loss (not knowing what file is what) when opening a packed BSA. If this is not desired, simply packing from the executable without the '-strtable' command will do the trick (please look at executable help menu).  
