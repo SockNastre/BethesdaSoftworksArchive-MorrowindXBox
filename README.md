@@ -23,9 +23,9 @@ Q: _How should I pack a BSA for Morrowind XBox?_
 A: Simply drag your 'Data'/'Data Files' folder onto the Packer CLI executable and it will pack it into a BSA which will work on XBox.  
 
 Q: _Can this repack the game's main BSA?_  
-A: Yes. This seems to be the only way to load additional content via a BSA for Morrowind XBox.  
+A: Yes. Repacking the game's main BSA seems to be the only way to load additional content via a BSA for Morrowind XBox.  
 
-Q: _Should I pack BSAs for PC with this?_  
+Q: _Can I pack BSAs for PC with this?_  
 A: Yes although I reccommend for PC to use another tool like [bsapack](https://github.com/xyzz/bsapack). This tool can pack for PC Morrowind perfectly fine.  
 
 Q: _Why is BSA Browser able to read the BSA's file names that I just packed? Shouldn't there be no name table?_  
